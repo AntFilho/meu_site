@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organização Pessoal - Estudos e Trabalho</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #2c3e50;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+
+        input[type="date"],
+        input[type="time"],
+        textarea,
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #2c3e50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #34495e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Organização Pessoal</h1>
+        <p>Estudos e Trabalho - Gestão do Tempo e Produtividade</p>
+    </header>
+
+    <section id="planejamento-diario">
+        <h2>Planejamento Diário</h2>
+        <label for="data">Selecione a data:</label><br>
+        <input type="date" id="data"><br>
+        <label for="tarefas">Tarefas do dia:</label><br>
+        <textarea id="tarefas" rows="5" placeholder="Escreva as tarefas que pretende realizar hoje..."></textarea>
+    </section>
+
+    <section id="metas">
+        <h2>Metas de Curto e Longo Prazo</h2>
+        <label for="meta-curto-prazo">Meta de Curto Prazo:</label><br>
+        <input type="text" id="meta-curto-prazo" placeholder="Ex: Concluir o capítulo 5 do livro de Direito"><br>
+        <label for="meta-longo-prazo">Meta de Longo Prazo:</label><br>
+        <input type="text" id="meta-longo-prazo" placeholder="Ex: Passar na prova de Direito no próximo semestre"><br>
+    </section>
+
+    <section id="anotacoes">
+        <h2>Anotações e Reflexões</h2>
+        <textarea id="anotacoes" rows="7" placeholder="Use este espaço para fazer anotações importantes ou reflexões pessoais..."></textarea>
+    </section>
+
+    <button class="button" onclick="salvarDados()">Salvar</button>
+
+    <script>
+        // Função simples para salvar os dados localmente
+        function salvarDados() {
+            const data = document.getElementById('data').value;
+            const tarefas = document.getElementById('tarefas').value;
+            const metaCurtoPrazo = document.getElementById('meta-curto-prazo').value;
+            const metaLongoPrazo = document.getElementById('meta-longo-prazo').value;
+            const anotacoes = document.getElementById('anotacoes').value;
+
+            // Salvando os dados no LocalStorage
+            localStorage.setItem('data', data);
+            localStorage.setItem('tarefas', tarefas);
+            localStorage.setItem('metaCurtoPrazo', metaCurtoPrazo);
+            localStorage.setItem('metaLongoPrazo', metaLongoPrazo);
+            localStorage.setItem('anotacoes', anotacoes);
+
+            alert('Dados salvos com sucesso!');
+        }
+
+        // Função para carregar os dados salvos ao abrir a página
+        window.onload = function () {
+            document.getElementById('data').value = localStorage.getItem('data') || '';
+            document.getElementById('tarefas').value = localStorage.getItem('tarefas') || '';
+            document.getElementById('meta-curto-prazo').value = localStorage.getItem('metaCurtoPrazo') || '';
+            document.getElementById('meta-longo-prazo').value = localStorage.getItem('metaLongoPrazo') || '';
+            document.getElementById('anotacoes').value = localStorage.getItem('anotacoes') || '';
+        }
+    </script>
+
+</body>
+
+</html>
